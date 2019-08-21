@@ -62,6 +62,7 @@ function idSearch(){
     });
 };
 
+//need a way to re-run idsearch after each selection until the user decides they are ready to complete checkout
 //creating function to ask user how many of the item that they want to purchase
 //this code should deduct the stock quantity every time an order is placed
 //if there is not enough product in stock, the terminal should read "Insufficient Quantity"
