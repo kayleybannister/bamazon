@@ -29,6 +29,7 @@ function afterConnection() {
     connection.query("SELECT * FROM products", function(err, res) {
         if (err) throw err;
 
+        //using a for loop to loop through the results from the table to make it look prettier
         for (var i = 0; i < res.length; i++)
         {
             console.log("Item ID: " + res[i].item_id);
