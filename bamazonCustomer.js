@@ -43,21 +43,26 @@ function afterConnection() {
   };
 
   //asking the user for Item ID input
-  function idSearch(){
+function idSearch(){
     inquirer
     .prompt({
-            name: "item_id",
-            type: "input",
-            message: "Please enter the item ID for the product you would like to buy\n"
+        name: "item_id",
+        type: "input",
+        message: "Please enter the item ID for the product you would like to buy\n"
     })
     .then(function(answer) {
     var query = "SELECT product_name, department_name, price FROM products WHERE ?";
     connection.query(query, { item_id: answer.item_id }, function(err, res) {
         if (err) throw err;
-        for (var i = 0; i < res.length; i++)
-         {
+        for (var i = 0; i < res.length; i++)                    
+        {
             console.log("Product: " + res[i].product_name + "\nDepartment: " + res[i].department_name + "\nPrice: " + res[i].price);
-         }
-        });
+         }    
+    });
     });
 };
+
+//creating function to ask user how many of the item that they want to purchase
+//this code should deduct the stock quantity every time an order is placed
+//if there is not enough product in stock, the terminal should read "Insufficient Quantity"
+//if there IS enough product in stock, the terminal should display the total cost of their purchase
