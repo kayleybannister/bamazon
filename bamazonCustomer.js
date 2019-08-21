@@ -22,6 +22,7 @@ connection.connect(function(err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
     afterConnection();
+    idSearch();
   });
 
 //this will display all the products listed in the table
@@ -38,8 +39,25 @@ function afterConnection() {
             console.log("Price: $" + res[i].price);
             console.log("Quantity in Stock: " + res[i].stock_quantity + "\n");
         }
-        //console.log(res);
-
-        connection.end();
     });
   };
+
+  //asking the user for Item ID input
+  function idSearch(){
+    inquirer
+    .prompt({
+            name: "item_id",
+            type: "input",
+            message: "Please enter the item ID for the product you would like to buy\n"
+    })
+    .then(function(answer) {
+    var query = "SELECT product_name, department_name, price FROM products WHERE ?";
+    connection.query(query, { item_id: answer.item_id }, function(err, res) {
+        if (err) throw err;
+        for (var i = 0; i < res.length; i++)
+         {
+            console.log("Product: " + res[i].product_name + "\nDepartment: " + res[i].department_name + "\nPrice: " + res[i].price);
+         }
+        });
+    });
+};
