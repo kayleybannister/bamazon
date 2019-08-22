@@ -15,4 +15,7 @@ SQL Schema in mySQL
 SQL Table in mySQL
 ![SQLtable](SQLtable.png)
 
+ID Search in Terminal
+![idsearchworking](idsearchworking.png)
+
 ** all screenshots are saved in the GitHub repository readMe file
